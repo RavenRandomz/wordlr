@@ -43,6 +43,8 @@ target_sources(
     ${MODULES_SRC}
 )
 
+target_include_directories(wordlr PRIVATE ${PROJECT_SOURCE_DIR}/src)
+
 target_link_libraries(
     wordlr
     ${Boost_LIBRARIES}
@@ -70,6 +72,8 @@ target_link_libraries(
     GTest::Main
     GTest::gmock
 )
+
+target_include_directories(wordlr PRIVATE ${PROJECT_SOURCE_DIR}/src {PROJECT_SOURCE_DIR}/test)
 
 include (GoogleTest test)
 
