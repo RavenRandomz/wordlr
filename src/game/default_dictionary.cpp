@@ -1,4 +1,5 @@
 #include <boost/algorithm/algorithm.hpp>
+#include "default_dictionary.h"
 
 namespace wordlr::game
 {
