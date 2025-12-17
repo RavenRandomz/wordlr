@@ -73,7 +73,7 @@ target_link_libraries(
     GTest::gmock
 )
 
-target_include_directories(wordlr PRIVATE ${PROJECT_SOURCE_DIR}/src {PROJECT_SOURCE_DIR}/test)
+target_include_directories(unit_test PRIVATE ${PROJECT_SOURCE_DIR}/src {PROJECT_SOURCE_DIR}/test)
 
 include (GoogleTest test)
 
