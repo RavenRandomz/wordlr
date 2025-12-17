@@ -45,10 +45,16 @@ target_sources(
 
 target_include_directories(wordlr PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
+set(TESTING_SRC ${REGULAR_SRC})
+list(REMOVE_ITEM TESTING_SRC "${PROJECT_SOURCE_DIR}/src/main.cpp" )
+
+message("TEST: ${TESTING_SRC}")
+message("TEST: ${REGULAR_SRC}")
 target_link_libraries(
     wordlr
     ${Boost_LIBRARIES}
 )
+
 add_executable(
     unit_test
     ${TEST_SRC}
