@@ -1,0 +1,19 @@
+#include <boost/algorithm/algorithm.hpp>
+
+namespace wordlr::game
+{
+
+    const char* getDefaultDictionaryString()
+    {
+        /**
+        * Every possible wordle word
+        */
+        static const char kDefaultDictionaryString[] = 
+        {
+            #embed "../../res/valid-wordle-words.txt"
+            ,'\0'
+        };
+        return kDefaultDictionaryString;
+    }
+    
+}
