@@ -48,7 +48,7 @@ public:
         FeedbackList feedback{};
         const std::string& otherText{potentialMatch.text_};
         assert(otherText.length() == text_.length());
-        for(int letterPos{0}; letterPos <= kWordleWordLength; ++letterPos)
+        for(int letterPos{0}; letterPos < kWordleWordLength; ++letterPos)
         {
             const char kThisLetter{text_[letterPos]};
             const char kPotentialMatchLetter{otherText[letterPos]};
@@ -59,7 +59,7 @@ public:
                 ( 
                 LetterFeedback
                     {
-                    .letter = kThisLetter,
+                    .letter = kPotentialMatchLetter,
                     .type = LetterFeedback::Type::kInRightLocation,
                     .position = letterPos
                     }
@@ -71,7 +71,7 @@ public:
                 ( 
                 LetterFeedback
                     {
-                    .letter = kThisLetter,
+                    .letter = kPotentialMatchLetter,
                     .type = LetterFeedback::Type::kInWrongLocation,
                     .position = letterPos
                     }
@@ -83,7 +83,7 @@ public:
                 ( 
                 LetterFeedback
                     {
-                    .letter = kThisLetter,
+                    .letter = kPotentialMatchLetter,
                     .type = LetterFeedback::Type::kNotInWord,
                     .position = letterPos
                     }
