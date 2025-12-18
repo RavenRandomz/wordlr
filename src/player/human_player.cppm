@@ -20,7 +20,7 @@ public:
         std::string guessText{};
         while(!validInput)
         {
-            std::string guessText = promptForGuess();
+            guessText = promptForGuess();
             if(game::FiveWord::isRealWordleWord(guessText) && game::FiveWord::properlyFormatted(guessText))
             {
                 validInput = true;
@@ -30,27 +30,30 @@ public:
                 invalidWarning();
             }
         }
+        currentGuess_ = guessText;
         return game::FiveWord(guessText);
     }
 
 
     void setRoundFeetback(const game::FeedbackList& feedback) override
     {
+        std::cout << feedback.getStatusString() << '\n';
     }
 private:
 
+    std::string currentGuess_{};
     std::string promptForGuess()
     {
-        std::string guess{};
-        std::print("Enter your guess which must be a lowercase 5 letter word: ");
-        std::cin >> guess;
+        std::string guess;
+        std::print("Enter your guess which must be a lowercase 5 letter word:\n");
+        std::getline(std::cin, guess);
 
         return guess;
     }
 
     void invalidWarning() const
     {
-        std::print("This input is invalid");
+        std::print("This input is invalid\n");
     }
     
 };
