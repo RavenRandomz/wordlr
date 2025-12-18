@@ -78,6 +78,27 @@ public:
         }
     }
 
+    std::string getStatusString() const
+    {
+        std::string status{};
+        for(const LetterFeedback& feedback : *this)
+        {
+            switch(feedback.type)
+            {
+                case(LetterFeedback::Type::kInRightLocation):
+                    status.push_back(kInRightLocationSymbol);
+                    break;
+                case(LetterFeedback::Type::kInWrongLocation):
+                    status.push_back(kInWrongLocationSymbol);
+                    break;
+                case(LetterFeedback::Type::kNotInWord):
+                    status.push_back(kNotInWordSymbol);
+                    break;
+            };
+        }
+        return status;
+    }
+
     //bool operator==(const FeedbackList&) const = default;
     friend bool operator==(const FeedbackList&, const FeedbackList&) = default;
 
