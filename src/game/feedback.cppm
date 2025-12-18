@@ -19,7 +19,7 @@ export struct LetterFeedback
     enum class Type 
     {
         kNotInWord,
-        kInWord,
+        kInWrongLocation,
         kInRightLocation
     };
     char letter;
