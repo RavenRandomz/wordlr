@@ -7,6 +7,7 @@ module;
 export module game.FiveWord;
 
 import game.WordleDictionary;
+import game.Feedback;
 
 namespace wordlr::game
 {
@@ -37,7 +38,63 @@ public:
         return iterator != kWordleDictionary.end();
     }
 
+    /**
+     *
+     * The "correct" word is compared with a potentialMatch
+     * The feedback will provide the status for each of the letters
+     */
+    FeedbackList compare(const FiveWord& potentialMatch) const
+    {
+        FeedbackList feedback{};
+        const std::string& otherText{potentialMatch.text_};
+        assert(otherText.length() == text_.length());
+        for(int letterPos{0}; letterPos <= kWordleWordLength; ++letterPos)
+        {
+            const char kThisLetter{text_[letterPos]};
+            const char kPotentialMatchLetter{otherText[letterPos]};
+            //check for letter match
+            if(kThisLetter == kPotentialMatchLetter)
+            {
+                feedback.push_back
+                ( 
+                LetterFeedback
+                    {
+                    .letter = kThisLetter,
+                    .type = LetterFeedback::Type::kInRightLocation,
+                    .position = letterPos
+                    }
+                );
+            }
+            else if(text_.contains(kPotentialMatchLetter))
+            {
+                feedback.push_back
+                ( 
+                LetterFeedback
+                    {
+                    .letter = kThisLetter,
+                    .type = LetterFeedback::Type::kInWrongLocation,
+                    .position = letterPos
+                    }
+                );
+            }
+            else // No match and not in correct location
+            {
+            feedback.push_back
+                ( 
+                LetterFeedback
+                    {
+                    .letter = kThisLetter,
+                    .type = LetterFeedback::Type::kNotInWord,
+                    .position = letterPos
+                    }
+                );
+            }
+        }
+        return std::move(feedback);
+    }
+
 private:
+    static constexpr int kWordleWordLength{5};
     const std::string text_;
 };
 }
