@@ -2,8 +2,6 @@ module;
 #include <algorithm>
 #include <string>
 #include <boost/algorithm/string.hpp>
-#include <iostream>
-#include <print>
 #include <cassert>
 
 export module game.FiveWord;
@@ -53,10 +51,8 @@ public:
         FeedbackList feedback{};
         const std::string otherText{potentialMatch.text_};
         assert(otherText.length() == text_.length());
-        std::cout <<otherText.length();
         for(int letterPos{0}; letterPos < kWordleWordLength; ++letterPos)
         {
-            std::cout <<letterPos;
             const char kThisLetter{text_[letterPos]};
             const char kPotentialMatchLetter{otherText[letterPos]};
             //check for letter match
