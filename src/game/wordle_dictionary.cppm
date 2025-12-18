@@ -15,10 +15,5 @@ Dictionary makeWordleDictionary()
     return wordleDictionary;
 }
 
-export const Dictionary wordleDictionary{makeWordleDictionary()};
+export const Dictionary kWordleDictionary{makeWordleDictionary()};
 }
-
-
-
-
-
