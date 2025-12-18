@@ -2,6 +2,8 @@ module;
 #include <algorithm>
 #include <string>
 #include <boost/algorithm/string.hpp>
+#include <iostream>
+#include <print>
 #include <cassert>
 
 export module game.FiveWord;
@@ -19,8 +21,11 @@ namespace wordlr::game
 export class FiveWord
 {
 public:
+    FiveWord(FiveWord&&) = default;
+    FiveWord(FiveWord&) = default;
     FiveWord(std::string text) : text_{text}
     {
+        assert(text_.length() != 0 && "String cannot be empty");
         assert(properlyFormatted(text) && "All of input must be lower case");
         assert(isRealWordleWord(text) && "Word must be in wordle dictionary");
     }
@@ -46,10 +51,12 @@ public:
     FeedbackList compare(const FiveWord& potentialMatch) const
     {
         FeedbackList feedback{};
-        const std::string& otherText{potentialMatch.text_};
+        const std::string otherText{potentialMatch.text_};
         assert(otherText.length() == text_.length());
+        std::cout <<otherText.length();
         for(int letterPos{0}; letterPos < kWordleWordLength; ++letterPos)
         {
+            std::cout <<letterPos;
             const char kThisLetter{text_[letterPos]};
             const char kPotentialMatchLetter{otherText[letterPos]};
             //check for letter match
@@ -92,6 +99,7 @@ public:
         }
         return std::move(feedback);
     }
+    bool operator==(const FiveWord&) const = default;
 
 private:
     static constexpr int kWordleWordLength{5};
