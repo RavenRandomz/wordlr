@@ -3,6 +3,7 @@ import game.FiveWord;
 import word.AnotherTestWord;
 import word.Word;
 import game.Dictionary;
+import game.WordleDictionary;
 #include <string>
 #include <iostream>
 #include <print>
@@ -11,7 +12,10 @@ import game.Dictionary;
 using namespace wordlr;
 int main()
 {
-    std::cout << game::getDefaultDictionaryString();
+    for(auto& word : game::kWordleDictionary)
+    {
+        std::cout << word;
+    }
     std::print("Fuck");
 
     game::Dictionary test{};
