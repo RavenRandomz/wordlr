@@ -1,5 +1,7 @@
 module;
 
+#include <vector>
+
 export module game.Feedback;
 
 /**
@@ -24,4 +26,5 @@ export struct LetterFeedback
     Type type;
     int position;
 };
+export using FeedbackList = std::vector<LetterFeedback>;
 }
