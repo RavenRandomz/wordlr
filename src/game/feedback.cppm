@@ -25,6 +25,14 @@ export struct LetterFeedback
     char letter;
     Type type;
     int position;
+
 };
-export using FeedbackList = std::vector<LetterFeedback>;
+export class FeedbackList : public std::vector<LetterFeedback>
+{
+public:
+    using std::vector<LetterFeedback>::vector;
+    static const char kNotInWordSymbol{'*'};
+    static const char kInWrongLocationSymbol{'#'};
+    static const char kInRightLocationSymbol{'@'};
+};
 }
