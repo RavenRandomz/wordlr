@@ -1,8 +1,12 @@
 module;
+#include <algorithm>
 #include <string>
 #include <boost/algorithm/string.hpp>
+#include <cassert>
 
 export module game.FiveWord;
+
+import game.WordleDictionary;
 
 namespace wordlr::game
 {
@@ -14,15 +18,26 @@ namespace wordlr::game
 export class FiveWord
 {
 public:
+    FiveWord(std::string text) : text_{text}
+    {
+        assert(properlyFormatted(text) && "All of input must be lower case");
+        assert(isRealWordleWord(text) && "Word must be in wordle dictionary");
+    }
+
     static bool properlyFormatted(const std::string& string)
     {
         const std::string kLowerCase{boost::algorithm::to_lower_copy(string)};
         return kLowerCase == string;
     }
 
-    static bool isValidWord()
+    static bool isRealWordleWord(const std::string& text)
     {
-        return true;
+        //https://www.geeksforgeeks.org/cpp/check-if-vector-contains-given-element-in-cpp/#using-stdfind
+        auto iterator{std::find(kWordleDictionary.begin(),kWordleDictionary.end(), text.c_str())};
+        return iterator != kWordleDictionary.end();
     }
+
+private:
+    const std::string text_;
 };
 }
