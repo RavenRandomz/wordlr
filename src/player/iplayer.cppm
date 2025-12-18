@@ -14,5 +14,7 @@ export class IPlayer
 public:
     virtual game::FiveWord getGuess() = 0;
     virtual void setRoundFeetback(const game::FeedbackList& feedback);
+
+    virtual ~IPlayer() = default;
 };
 }
