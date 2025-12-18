@@ -2,6 +2,7 @@
 #include <gtest/gtest.h>
 
 import game.FiveWord;
+import game.Feedback;
 
 namespace wordlr::game::fiveWordTest
 {
@@ -26,5 +27,19 @@ TEST(FiveWord, isRealWordleWord)
     EXPECT_TRUE(FiveWord::isRealWordleWord(valid3));
     EXPECT_FALSE(FiveWord::isRealWordleWord(invalid));
     EXPECT_FALSE(FiveWord::isRealWordleWord(invalid2));
+}
+
+TEST(FiveWord, compare)
+{
+    const std::string kMainText{"crane"};
+    const std::string kGuessText{"crack"};
+    const FeedbackList kExpectedFeedback{"@@@#*", kGuessText};
+
+    const FiveWord kMain{kMainText};
+    const FiveWord kGuess{kGuessText};
+
+    const FeedbackList kFeedback{kMain.compare(kGuess)};
+
+    EXPECT_EQ(kFeedback, kExpectedFeedback);
 }
 }
