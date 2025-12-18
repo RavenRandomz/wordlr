@@ -8,10 +8,20 @@ export module game.Feedback;
  */
 namespace wordlr::game
 {
-enum class LetterFeedbackType
+export struct LetterFeedback
 {
-    kNotInWord,
-    kInWord,
-    kInRightLocation
+    /**
+     * Kinda cursed to nest this but it's really context specific
+     * so instead of naming this LetterFeedbackType
+     */
+    enum class Type 
+    {
+        kNotInWord,
+        kInWord,
+        kInRightLocation
+    };
+    char letter;
+    Type type;
+    int position;
 };
 }
