@@ -1,6 +1,6 @@
 module;
 
-#include <string_view>
+#include <string>
 #include <vector>
 
 export module game.Feedback;
@@ -23,6 +23,8 @@ export struct LetterFeedback
         kInWrongLocation,
         kInRightLocation
     };
+    bool operator==(const LetterFeedback&) const = default;
+
     char letter;
     Type type;
     int position;
@@ -44,9 +46,11 @@ public:
     {
     }
 
-    FeedbackList(std::string_view letterStatus, std::string_view word) : std::vector<LetterFeedback>{}
+    FeedbackList() = default;
+
+    FeedbackList(const std::string& letterStatus, const std::string& word) : std::vector<LetterFeedback>{}
     {
-        for(int i{0}; i <= word.length(); ++i)
+        for(int i{0}; i < word.length(); ++i)
         {
             const char kLetter{word[i]};
             const char kStatusSymbol{letterStatus[i]};
@@ -73,6 +77,9 @@ public:
             );
         }
     }
+
+    //bool operator==(const FeedbackList&) const = default;
+    friend bool operator==(const FeedbackList&, const FeedbackList&) = default;
 
     static const char kNotInWordSymbol{'*'};
     static const char kInWrongLocationSymbol{'#'};
