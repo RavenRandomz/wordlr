@@ -11,6 +11,6 @@ export class IFilter
 {
 public:
     virtual bool isTextValid(const std::string& text) const = 0;
-    ~IFilter()  = default;
+    virtual ~IFilter()  = default;
 };
 }
