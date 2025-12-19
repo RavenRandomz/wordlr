@@ -37,7 +37,7 @@ public:
             }
             else
             {
-                game::FeedbackList feedback{guess.compare(guess)};
+                game::FeedbackList feedback{wordToGuess.compare(guess)};
                 player_.setRoundFeetback(feedback);
             }
         }
