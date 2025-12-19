@@ -58,8 +58,11 @@ public:
     }
 
 private:
-    boost::random::mt19937 randomNumberGenerator_{};
+    static boost::random::mt19937 randomNumberGenerator_;
     boost::random::uniform_int_distribution<> wordIndexGenerator_{0, static_cast<int>(kWordleDictionary.size() - 1)};
     player::IPlayer& player_;
 };
+
+boost::random::mt19937 Round::randomNumberGenerator_{};
 }
+
