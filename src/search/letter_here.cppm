@@ -24,7 +24,7 @@ public:
     bool isTextValid(const std::string& text) const override
     {
         const int kMaxIndex{static_cast<int>(text.length() - 1)};
-        if(kMaxIndex > kPosition_) 
+        if(kMaxIndex < kPosition_) 
         {
             return false;
         }
