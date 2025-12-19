@@ -1,7 +1,7 @@
 module;
 #include <string>
 
-export module search.ExlcudesThisLetter;
+export module search.ExcludesThisLetter;
 import search.IFilter;
 
 namespace wordlr::search
