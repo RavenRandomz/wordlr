@@ -5,6 +5,7 @@ import word.Word;
 import game.Dictionary;
 import game.WordleDictionary;
 import game.Round;
+import search.SearchAgent;
 import player.HumanPlayer;
 #include <string>
 #include <iostream>
@@ -19,13 +20,7 @@ int main()
     //    std::cout << word;
     //}
     //std::print("Fuck");
-
-    player::HumanPlayer player{};
-    game::FiveWord crane{"crane"};
-    while(1)
-    {
-        game::Round round{player};
-        round.run();
-    }
+    search::SearchAgent agent{};
+    agent.search();
     return 0;
 }
