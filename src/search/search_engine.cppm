@@ -13,7 +13,7 @@ namespace wordlr::search
 export class SearchEngine
 {
 public:
-    SearchEngine(std::span<std::string> dictionary) : dictionary_{dictionary}
+    SearchEngine(std::span<const std::string> dictionary) : dictionary_{dictionary}
     {
     }
 
@@ -36,6 +36,6 @@ public:
     }
 private:
     MultiFilter searchFilter_{};
-    std::span<std::string> dictionary_{};
+    std::span<const std::string> dictionary_{};
 };
 }
