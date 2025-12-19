@@ -25,4 +25,4 @@ TEST(HasLetter, foundWord)
     EXPECT_FALSE(kAFilter.isTextValid(kHasZ));
     EXPECT_FALSE(kZFilter.isTextValid(kHasA));
 }
-};
+}
