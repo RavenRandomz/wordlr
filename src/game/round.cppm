@@ -40,7 +40,7 @@ public:
             game::FiveWord guess{player_.getGuess()};
             if(guess == wordToGuess_)
             {
-                victory();
+                player_.onVictory();
                 return;
             }
             else
@@ -48,13 +48,8 @@ public:
                 game::FeedbackList feedback{wordToGuess_.compare(guess)};
                 player_.setRoundFeetback(feedback);
             }
+            player_.onLoss();
         }
-        std::print("You lost");
-    }
-
-    void victory()
-    {
-        std::println("You won!");
     }
 
     game::FiveWord generateRandomWord()
