@@ -39,6 +39,18 @@ public:
     {
         std::cout << feedback.getStatusString() << '\n';
     }
+
+    void onNewRound() override
+    {
+    }
+
+    void onVictory() override
+    {
+    }
+
+    void onLoss() override
+    {
+    }
 private:
 
     std::string currentGuess_{};
@@ -50,6 +62,7 @@ private:
 
         return guess;
     }
+
 
     void invalidWarning() const
     {

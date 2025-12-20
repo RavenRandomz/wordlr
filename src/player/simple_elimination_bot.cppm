@@ -31,9 +31,17 @@ public:
         search_.addFilter(std::move(filter));
     }
 
-    void onNewRound()
+    void onNewRound() override
     {
         search_.reset();
+    }
+
+    void onVictory() override
+    {
+    }
+
+    void onLoss() override
+    {
     }
 private:
     search::IncrementalSearch search_{game::kWordleDictionary};
