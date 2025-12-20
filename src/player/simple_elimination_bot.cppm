@@ -31,7 +31,7 @@ public:
         search_.addFilter(std::move(filter));
     }
 
-    void newRound()
+    void onNewRound()
     {
         search_.reset();
     }
