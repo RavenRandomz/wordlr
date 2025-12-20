@@ -20,33 +20,36 @@ public:
 
     Round(player::IPlayer& player)
         :
-        player_{player}
+        player_{player},
+        wordToGuess_{generateRandomWord()}
+    {
+    }
+
+    Round(player::IPlayer& player, const game::FiveWord& word)
+        :
+        player_{player},
+        wordToGuess_{word}
     {
     }
 
     void run()
     {
-        game::FiveWord wordToGuess{generateRandomWord()};
+        player_.onNewRound();
         for(int i{0}; i <= kWordleGuesses; ++i)
         {
             game::FiveWord guess{player_.getGuess()};
-            if(guess == wordToGuess)
+            if(guess == wordToGuess_)
             {
-                victory();
+                player_.onVictory();
                 return;
             }
             else
             {
-                game::FeedbackList feedback{wordToGuess.compare(guess)};
+                game::FeedbackList feedback{wordToGuess_.compare(guess)};
                 player_.setRoundFeetback(feedback);
             }
         }
-        std::print("You lost");
-    }
-
-    void victory()
-    {
-        std::println("You won!");
+        player_.onLoss();
     }
 
     game::FiveWord generateRandomWord()
@@ -60,7 +63,9 @@ public:
 private:
     static boost::random::mt19937 randomNumberGenerator_;
     boost::random::uniform_int_distribution<> wordIndexGenerator_{0, static_cast<int>(kWordleDictionary.size() - 1)};
+
     player::IPlayer& player_;
+    game::FiveWord wordToGuess_;
 };
 
 boost::random::mt19937 Round::randomNumberGenerator_{};

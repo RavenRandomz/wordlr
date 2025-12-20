@@ -39,6 +39,20 @@ public:
     {
         std::cout << feedback.getStatusString() << '\n';
     }
+
+    void onNewRound() override
+    {
+    }
+
+    void onVictory() override
+    {
+        std::println("You won!");
+    }
+
+    void onLoss() override
+    {
+        std::println("You lost!");
+    }
 private:
 
     std::string currentGuess_{};
@@ -50,6 +64,7 @@ private:
 
         return guess;
     }
+
 
     void invalidWarning() const
     {
