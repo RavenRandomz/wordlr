@@ -19,8 +19,6 @@ namespace wordlr::game
 export class FiveWord
 {
 public:
-    FiveWord(FiveWord&&) = default;
-    FiveWord(FiveWord&) = default;
     FiveWord(std::string text) : text_{text}
     {
         assert(text_.length() != 0 && "String cannot be empty");
