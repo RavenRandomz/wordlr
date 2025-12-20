@@ -24,5 +24,14 @@ int main()
     //
     player::SimpleEliminationBot bot{};
 
+    //Floyd U - Single Avoure
+
+    for (const std::string& word : game::kWordleDictionary)
+    {
+        game::Round round{bot, word};
+        round.run();
+        bot.onNewRound();
+    }
+
     return 0;
 }
