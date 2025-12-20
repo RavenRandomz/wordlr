@@ -48,8 +48,8 @@ public:
                 game::FeedbackList feedback{wordToGuess_.compare(guess)};
                 player_.setRoundFeetback(feedback);
             }
-            player_.onLoss();
         }
+        player_.onLoss();
     }
 
     game::FiveWord generateRandomWord()
