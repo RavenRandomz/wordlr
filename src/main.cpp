@@ -39,5 +39,9 @@ int main()
     std::string s{std::format("Victories: {}, Losses {}", bot.getVictoryCount(), bot.getLossCount()).c_str()};
     std::cout << s;
 
+    int total{bot.getVictoryCount() + bot.getLossCount()};
+    double winRatio{bot.getVictoryCount() / static_cast<double>(total)};
+    std::cout << "Win ratio: " << winRatio << '\n';
+
     return 0;
 }
