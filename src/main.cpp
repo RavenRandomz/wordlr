@@ -7,6 +7,7 @@ import game.WordleDictionary;
 import game.Round;
 import search.SearchAgent;
 import player.HumanPlayer;
+import player.SimpleEliminationBot;
 #include <string>
 #include <iostream>
 #include <print>
@@ -20,7 +21,8 @@ int main()
     //    std::cout << word;
     //}
     //std::print("Fuck");
-    search::SearchAgent agent{};
-    agent.search();
+    //
+    player::SimpleEliminationBot bot{};
+
     return 0;
 }
