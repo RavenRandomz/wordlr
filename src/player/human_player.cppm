@@ -46,10 +46,12 @@ public:
 
     void onVictory() override
     {
+        std::println("You won!");
     }
 
     void onLoss() override
     {
+        std::println("You lost!");
     }
 private:
 
