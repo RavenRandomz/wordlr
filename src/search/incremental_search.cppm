@@ -22,6 +22,12 @@ public:
         searchFilter_.insert(std::move(filter));
     }
 
+    void reset()
+    {
+        searchFilter_.clear();
+        searchPool_ = std::vector<std::string>{dictionary_.begin(), dictionary_.end()};
+    }
+
     /**
      * This narrows the searchPool. Whenever addFilter is called
      * and more searches are performed.
