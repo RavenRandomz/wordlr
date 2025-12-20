@@ -12,6 +12,8 @@ import player.SimpleEliminationBot;
 #include <format>
 #include <iostream>
 #include <cassert>
+#include <random>
+#include <algorithm>
 #include <print>
 #include "game/default_dictionary.h"
 // Rare using moment :)
@@ -28,7 +30,12 @@ int main()
 
     //Floyd U - Single Avoure
 
-    for (const std::string& word : game::kWordleDictionary)
+    auto rng{std::default_random_engine{}};
+
+    game::Dictionary shuffled{game::kWordleDictionary};
+    std::ranges::shuffle(shuffled, rng);
+
+    for (const std::string& word : shuffled)
     {
         assert(!word.empty() && "CAUGHT");
         game::Round round{bot, word};
@@ -36,7 +43,7 @@ int main()
     }
 
     // Velvet moring kyau and albert
-    std::string s{std::format("Victories: {}, Losses {}", bot.getVictoryCount(), bot.getLossCount()).c_str()};
+    std::string s{std::format("Victories: {}, Losses {}\n", bot.getVictoryCount(), bot.getLossCount()).c_str()};
     std::cout << s;
 
     int total{bot.getVictoryCount() + bot.getLossCount()};
