@@ -1,6 +1,8 @@
 module;
 #include <memory>
 #include <vector>
+#include <iostream>
+#include <print>
 #include <cassert>
 
 export module player.SimpleEliminationBot;
@@ -22,27 +24,34 @@ public:
     {
         game::Dictionary possibleWords{search_.search()};
         assert(!possibleWords.empty() && "No possible guesses");
-        return game::FiveWord(possibleWords[0]);
+        std::string guess{possibleWords[0]};
+        std::cout << guess << '\n';
+        return game::FiveWord{guess};
     }
 
     void setRoundFeetback(const game::FeedbackList& feedback) override
     {
+        std::cout << feedback.getStatusString() << '\n';
         auto filter{std::make_unique<search::MultiFilter>(search::feedBackToFilter(feedback))};
         search_.addFilter(std::move(filter));
     }
 
     void onNewRound() override
     {
+        ++roundCount_;
+        std::cout << "Round: " << roundCount_ << '\n';
         search_.reset();
     }
 
     void onVictory() override
     {
+        std::println("Victory!");
         ++victoryCount_;
     }
 
     void onLoss() override
     {
+        std::println("Loss!");
         ++lossCount_;
     }
 
@@ -61,5 +70,6 @@ private:
 
     int victoryCount_{0};
     int lossCount_{0};
+    int roundCount_{0};
 };
 }
