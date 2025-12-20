@@ -38,12 +38,28 @@ public:
 
     void onVictory() override
     {
+        ++victoryCount_;
     }
 
     void onLoss() override
     {
+        ++lossCount_;
     }
+
+    int getVictoryCount() const
+    {
+        return victoryCount_;
+    }
+
+    int getLossCount() const
+    {
+        return lossCount_;
+    }
+
 private:
     search::IncrementalSearch search_{game::kWordleDictionary};
+
+    int victoryCount_{0};
+    int lossCount_{0};
 };
 }
