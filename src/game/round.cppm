@@ -35,7 +35,6 @@ public:
     void run()
     {
         player_.onNewRound();
-        game::FiveWord wordToGuess{generateRandomWord()};
         for(int i{0}; i <= kWordleGuesses; ++i)
         {
             game::FiveWord guess{player_.getGuess()};
