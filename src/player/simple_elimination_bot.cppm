@@ -20,7 +20,7 @@ namespace wordlr::player
 export class SimpleEliminationBot : public IPlayer
 {
 public:
-    game::FiveWord getGuess() override 
+    virtual game::FiveWord getGuess() override 
     {
         game::Dictionary possibleWords{search_.search()};
         assert(!possibleWords.empty() && "No possible guesses");
@@ -29,38 +29,38 @@ public:
         return game::FiveWord{guess};
     }
 
-    void setRoundFeetback(const game::FeedbackList& feedback) override
+    virtual void setRoundFeetback(const game::FeedbackList& feedback) override
     {
         std::cout << feedback.getStatusString() << '\n';
         auto filter{std::make_unique<search::MultiFilter>(search::feedBackToFilter(feedback))};
         search_.addFilter(std::move(filter));
     }
 
-    void onNewRound() override
+    virtual void onNewRound() override
     {
         ++roundCount_;
         std::cout << "Round: " << roundCount_ << '\n';
         search_.reset();
     }
 
-    void onVictory() override
+    virtual void onVictory() override
     {
         std::println("Victory!");
         ++victoryCount_;
     }
 
-    void onLoss() override
+    virtual void onLoss() override
     {
         std::println("Loss!");
         ++lossCount_;
     }
 
-    int getVictoryCount() const
+    virtual int getVictoryCount() const
     {
         return victoryCount_;
     }
 
-    int getLossCount() const
+    virtual int getLossCount() const
     {
         return lossCount_;
     }
