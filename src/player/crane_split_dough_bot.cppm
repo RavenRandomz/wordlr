@@ -25,18 +25,20 @@ public:
             const std::string kGuess{craneSplitDoughElimination_[craneSplitDoughIndex_]};
             ++craneSplitDoughIndex_;
             std::cout << kGuess <<'\n';
+            std::cout << guessCount_;
+            ++guessCount_;
             return game::FiveWord{kGuess};
         }
         else
         {
+            ++guessCount_;
             return SimpleEliminationBot::getGuess();
         }
-
-        ++guessCount_;
     }
 
     virtual void onNewRound() override
     {
+        SimpleEliminationBot::onNewRound();
         guessCount_ = 1;
         craneSplitDoughIndex_ = 0;
     }
