@@ -16,7 +16,7 @@ namespace wordlr::game
 export class Round
 {
 public:
-    static const int kWordleGuesses{5};
+    static const int kWordleGuesses{6};
 
     Round(player::IPlayer& player)
         :
@@ -35,7 +35,7 @@ public:
     void run()
     {
         player_.onNewRound();
-        for(int i{0}; i <= kWordleGuesses; ++i)
+        for(int i{0}; i < kWordleGuesses; ++i)
         {
             game::FiveWord guess{player_.getGuess()};
             if(guess == wordToGuess_)
