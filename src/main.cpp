@@ -8,6 +8,7 @@ import game.Round;
 import search.SearchAgent;
 import player.HumanPlayer;
 import player.SimpleEliminationBot;
+import player.CraneSplitDoughBot;
 #include <string>
 #include <format>
 #include <iostream>
@@ -26,7 +27,7 @@ int main()
     //}
     //std::print("Fuck");
     //
-    player::SimpleEliminationBot bot{};
+    player::CraneSplitDoughBot bot{};
 
     //Floyd U - Single Avoure
 
