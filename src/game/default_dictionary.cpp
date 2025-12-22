@@ -24,7 +24,7 @@ namespace wordlr::game
         */
         static const char kAnswerDictionaryString[] = 
         {
-            #embed "../../res/valid-wordle-words.txt"
+            #embed "../../res/wordle_answers.txt"
             ,'\0'
         };
         return kAnswerDictionaryString;
