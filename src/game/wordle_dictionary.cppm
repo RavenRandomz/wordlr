@@ -28,7 +28,7 @@ export const Dictionary kWordleDictionary{makeWordleDictionary()};
 Dictionary makeAnswerDictionary()
 {
     Dictionary answerDictionary{};
-    boost::algorithm::split(answerDictionary, getDefaultDictionaryString(), boost::is_any_of("\n"));
+    boost::algorithm::split(answerDictionary, getAnswerDictionaryString(), boost::is_any_of("\n"));
     // HACK: For some reason boost is adding an empty word despite the text file not having an empty line
     answerDictionary.pop_back();
 
