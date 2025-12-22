@@ -16,5 +16,18 @@ namespace wordlr::game
         };
         return kDefaultDictionaryString;
     }
+
+    const char* getAnswerDictionaryString()
+    {
+        /**
+        * Every possible wordle word
+        */
+        static const char kAnswerDictionaryString[] = 
+        {
+            #embed "../../res/valid-wordle-words.txt"
+            ,'\0'
+        };
+        return kAnswerDictionaryString;
+    }
     
 }
