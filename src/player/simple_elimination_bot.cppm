@@ -26,6 +26,8 @@ public:
         assert(!possibleWords.empty() && "No possible guesses");
         std::string guess{possibleWords[0]};
         std::cout << guess << '\n';
+
+        currentGuess_ = guess;
         return game::FiveWord{guess};
     }
 
@@ -52,6 +54,7 @@ public:
     virtual void onLoss() override
     {
         std::println("Loss!");
+        failedWords_.push_back(currentGuess_);
         ++lossCount_;
     }
 
@@ -65,9 +68,16 @@ public:
         return lossCount_;
     }
 
-private:
-    search::IncrementalSearch search_{game::kWordleDictionary};
+    virtual std::vector<std::string> getLossWords()
+    {
+        return failedWords_; 
+    }
 
+private:
+    search::IncrementalSearch search_{game::kAnswerDictionary};
+
+    std::string currentGuess_{};
+    std::vector<std::string> failedWords_{};
     int victoryCount_{0};
     int lossCount_{0};
     int roundCount_{0};
