@@ -33,7 +33,7 @@ int main()
 
     auto rng{std::default_random_engine{}};
 
-    game::Dictionary shuffled{game::kWordleDictionary};
+    game::Dictionary shuffled{game::kAnswerDictionary};
     std::ranges::shuffle(shuffled, rng);
 
     for (const std::string& word : shuffled)
@@ -43,13 +43,18 @@ int main()
         round.run();
     }
 
+    for (const auto& word : bot.getLossWords())
+    {
+        std::println("{}",word);
+    }
+
     // Velvet moring kyau and albert
-    std::string s{std::format("Victories: {}, Losses {}\n", bot.getVictoryCount(), bot.getLossCount()).c_str()};
-    std::cout << s;
+    std::println("Victories: {}, Losses {}", bot.getVictoryCount(), bot.getLossCount());
 
     int total{bot.getVictoryCount() + bot.getLossCount()};
     double winRatio{bot.getVictoryCount() / static_cast<double>(total)};
-    std::cout << "Win ratio: " << winRatio << '\n';
+
+    std::println("Win ratio: {}", winRatio);
 
     return 0;
 }
