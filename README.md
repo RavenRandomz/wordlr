@@ -3,6 +3,8 @@
 The goal of wordlr is to create a program to attempt to beat every possible wordle game.
 This is done through a simple elimination algorithm for a search engine.
 
+
+
 # Building
 
 Do the below in order
@@ -58,3 +60,18 @@ cmake .. -DCMAKE_BUILD_TYPE=Release #Ninja is cross platform and is one of the f
 ```
 
 For more advanced users, look up using ninja multi-config as an option.
+
+
+# Architecture
+
+res - contains game files such as victory and valid guess world lists
+game - defines your standard Wordle game such as rounds, a game, which contains 
+rounds (keeps tracks of victories and losses), and dictionaries
+player - user/computer interaction with a worldr round, you'll find bots here
+search - search utilities, a filter checks if a word is valid or not, a search 
+engine uses filters to check for valid words, filters can be combined by the 
+mulitfilter
+word - deprecated
+
+
+Check the unit tests for usecase examples
