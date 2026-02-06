@@ -59,6 +59,9 @@ cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release #Ninja is cross platform and is one of the few project types that supports modules at the moment with CMakef
 ```
 
+you will have a wordlr and unit\_test executable. Unit test will run the unit 
+tests. You will need to install the gmock and gtest dependencies on your system.
+
 For more advanced users, look up using ninja multi-config as an option.
 
 
